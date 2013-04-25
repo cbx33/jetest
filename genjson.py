@@ -1,7 +1,7 @@
 import json
 import os
 
-obj = {"id":1, "tree":{"p":{}}}
+obj = {"id":1, "tree":{"p":[]}}
 
 a = os.listdir('p')
 for char in a:

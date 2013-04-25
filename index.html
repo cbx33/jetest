@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>gh3</title>
+    
+</head>
+<body>
+	<div id="bunch">pok</div>
+	<div id="disp"></div>
+</body>
+<script src="jquery-1.7.2.js"></script>
+<script>
+	
+
+$.getJSON("test.json", function(data){
+	$.each(data['tree']['p'], function(charr, grp){
+		newdiv = $("<div>"+charr+"</div>").attr("id", charr)
+		newdiv.appendTo("#bunch")
+		$.each(data['tree']['p'][charr], function(arr, grp){
+			newdiv = $("<div>"+grp['post']+"</div>").attr("id", grp['post'])
+			newdiv.bind('click', function(){
+				$.ajax({
+					url: "p/"+charr+"/"+grp['post'],
+					dataType: 'text',
+					success: function(data){
+						$('#disp').html(data)
+						}
+					})
+			})
+			newdiv.appendTo("#"+charr)
+		})
+	})
+});
+</script>
